@@ -6,6 +6,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRegisterRequestDto {
+
+    private String name;
+    private String email;
+    private String password;
+
     public String getName() {
         return name;
     }
@@ -30,7 +35,5 @@ public class UserRegisterRequestDto {
         this.password = password;
     }
 
-    private String name;
-    private String email;
-    private String password;
+
 }

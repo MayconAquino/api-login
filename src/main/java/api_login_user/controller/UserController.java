@@ -30,7 +30,6 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserLoginRequestDto request) {
-        System.out.println(request.getEmail());
         try {
             return ResponseEntity.ok(userService.login(request.getEmail(), request.getPassword()));
         } catch (Exception e) {
