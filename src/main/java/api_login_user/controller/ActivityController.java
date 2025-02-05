@@ -4,6 +4,7 @@ import api_login_user.Dtos.ActivityDto;
 import api_login_user.model.ActivityModel;
 import api_login_user.model.AtualizarNomeRequest;
 import api_login_user.service.ActivityService;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,12 @@ public class ActivityController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody ActivityDto request) {
-        try {
+        ActivityModel activityExist = activityService.findByName(request.getName());
+        if ( activityExist == null || StringUtils.isBlank(activityExist.getName())) {
             ActivityModel activity = new ActivityModel();
             activity.setName(request.getName());
             return ResponseEntity.ok(activityService.register(activity));
-        } catch (Exception e) {
+        } else {
             return ResponseEntity.badRequest().body("Activity already in use");
         }
     }
