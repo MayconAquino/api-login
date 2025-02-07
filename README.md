@@ -4,7 +4,9 @@ A API contempla um sistema de controle com as seguintes funções:
 
 Usuário:
 - Cadastra um usuário.
-- Login com usuário cadastrado(De acordo com o protótipo não teremos por enquanto a jornada de edição ou exclusão dos mesmos.)
+- Login com usuário cadastrado.
+- Mudar senha de usuário
+- Deletar usuário
 
 Atividades:
 - Cadastra uma atividade
