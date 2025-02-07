@@ -25,4 +25,20 @@ public class UserService {
         throw new RuntimeException("Invalid credentials");
     }
 
+    public UserModel updatePassword(String email, String newPassword) {
+        UserModel user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setPassword(newPassword);
+            return userRepository.save(user);
+        }
+        throw new RuntimeException("User not found");
+    }
+    public void deleteUserByEmail(String email) {
+        UserModel user = userRepository.findByEmail(email);
+        if (user != null) {
+            userRepository.delete(user);
+        } else {
+            throw new RuntimeException("User not found");
+        }
+    }
 }

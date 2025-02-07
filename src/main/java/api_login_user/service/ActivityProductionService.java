@@ -80,4 +80,5 @@ public class ActivityProductionService {
             return ResponseEntity.badRequest().body("Produção não encontrada para a atividade: " + activityName);
         }
     }
+
 }

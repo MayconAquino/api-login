@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/production")
 public class ActivityProductionController {
@@ -33,5 +35,10 @@ public class ActivityProductionController {
     @DeleteMapping("/delete/{activityName}")
     public ResponseEntity<?> deleteProduction(@PathVariable String activityName) {
         return activityProductionService.deleteByName(activityName);
+    }
+
+    @GetMapping
+    public List<ActivityProductionModel> findAll() {
+        return  activityProductionService.findAll();
     }
 }

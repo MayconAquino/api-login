@@ -32,8 +32,8 @@ public class StockController {
     }
 
     @PutMapping("/editar")
-    public ResponseEntity<StockModel> updateStock(@RequestBody AtualizarItemStock dto) {
-        StockModel updatedStock = stockService.updateStock(dto);
+    public ResponseEntity<StockModel> updateStock(@RequestBody AtualizarItemStock req) {
+        StockModel updatedStock = stockService.updateStock(req);
         return ResponseEntity.ok(updatedStock);
     }
 

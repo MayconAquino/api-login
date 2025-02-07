@@ -16,7 +16,13 @@ public class StockService {
     private StockRepository stockRepository;
 
     public StockModel register(StockModel stock) {
-        return stockRepository.save(stock);
+        StockModel stockExisty = stockRepository.findByNameItem(stock.getNameItem());
+        if(stockExisty.getNameItem() != null && !stockExisty.getNameItem().isEmpty()) {
+            return stockRepository.save(stock);
+
+        } else {
+            throw new RuntimeException("O estoque já existe!");
+        }
     }
 
     public List<StockModel> findAll() {
