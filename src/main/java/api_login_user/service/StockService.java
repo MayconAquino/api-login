@@ -15,14 +15,13 @@ public class StockService {
     @Autowired
     private StockRepository stockRepository;
 
-    public StockModel register(StockModel stock) {
-        StockModel stockExisty = stockRepository.findByNameItem(stock.getNameItem());
-        if(stockExisty.getNameItem() != null && !stockExisty.getNameItem().isEmpty()) {
-            return stockRepository.save(stock);
-
-        } else {
-            throw new RuntimeException("O estoque já existe!");
+    public ResponseEntity<?> register(StockModel stock) {
+        StockModel stockExists = stockRepository.findByNameItem(stock.getNameItem());
+        if(stockExists == null) {
+            StockModel stockSalvo = stockRepository.save(stock);
+            return ResponseEntity.ok(stockSalvo);
         }
+        return  ResponseEntity.badRequest().body("Item ja existe");
     }
 
     public List<StockModel> findAll() {

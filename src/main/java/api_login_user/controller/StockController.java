@@ -21,14 +21,10 @@ public class StockController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody StockDto request) {
-        try {
             StockModel stock = new StockModel();
             stock.setNameItem(request.getNameItem());
             stock.setQuantidadeItem(request.getQuantidadeItem());
-            return ResponseEntity.ok(stockService.register(stock));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Item ja existe");
-        }
+            return stockService.register(stock);
     }
 
     @PutMapping("/editar")
